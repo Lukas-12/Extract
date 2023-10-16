@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://hpyvfmncjron"]
+
+[ext_resource type="Texture2D" uid="uid://b3joieiqsuddf" path="res://Assets/0x72_DungeonTilesetII_v1.6.png" id="1_41d86"]
+[ext_resource type="Script" path="res://player.gd" id="1_i37cm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv1ee"]
+atlas = ExtResource("1_41d86")
+region = Rect2(128, 104, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwpgu"]
+atlas = ExtResource("1_41d86")
+region = Rect2(144, 104, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puial"]
+atlas = ExtResource("1_41d86")
+region = Rect2(160, 104, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri5be"]
+atlas = ExtResource("1_41d86")
+region = Rect2(176, 104, 16, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3deq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv1ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwpgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puial")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri5be")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_badm8"]
+radius = 15.0
+height = 44.0
+
+[node name="Player" type="Area2D"]
+position = Vector2(148, 101)
+script = ExtResource("1_i37cm")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3deq0")
+animation = &"idle"
+frame = 2
+frame_progress = 0.154877
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_badm8")
