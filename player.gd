@@ -10,7 +10,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
+	var velocity = Vector2.ZERO # The player's movement vector. defaul (0,0)
+	$Body.play()
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -21,10 +22,7 @@ func _process(delta):
 		velocity.y -= 1
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
+		velocity = velocity.normalized() * speed # faster diagonal
 		
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
