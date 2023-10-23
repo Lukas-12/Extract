@@ -1,79 +1,166 @@
-[gd_scene load_steps=11 format=3 uid="uid://hpyvfmncjron"]
+[gd_scene load_steps=10 format=3 uid="uid://hpyvfmncjron"]
 
 [ext_resource type="Texture2D" uid="uid://b3joieiqsuddf" path="res://Assets/0x72_DungeonTilesetII_v1.6.png" id="1_41d86"]
 [ext_resource type="Script" path="res://player.gd" id="1_i37cm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bv1ee"]
-atlas = ExtResource("1_41d86")
-region = Rect2(128, 104, 16, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwpgu"]
-atlas = ExtResource("1_41d86")
-region = Rect2(144, 104, 16, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_puial"]
-atlas = ExtResource("1_41d86")
-region = Rect2(160, 104, 16, 26)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ri5be"]
-atlas = ExtResource("1_41d86")
-region = Rect2(176, 104, 16, 26)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_3deq0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bv1ee")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwpgu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_puial")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ri5be")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_374og"]
-atlas = ExtResource("1_41d86")
-region = Rect2(288, 135, 16, 27)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8wm5k"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_374og")
-}],
-"loop": true,
-"name": &"Weapon Swing",
-"speed": 5.0
-}]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_badm8"]
-radius = 15.0
-height = 44.0
+radius = 18.0
+height = 48.0
+
+[sub_resource type="Animation" id="Animation_4necf"]
+resource_name = "WeaponSwing"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.705113, 1.5516]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -3.5), Vector2(10, -3), Vector2(17, 5.5)]
+}
+
+[sub_resource type="Animation" id="Animation_qmi4p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xmvno"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, -3.5), Vector2(2, -3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcguc"]
+_data = {
+"RESET": SubResource("Animation_qmi4p"),
+"WeaponSwing": SubResource("Animation_4necf"),
+"walk": SubResource("Animation_xmvno")
+}
+
+[sub_resource type="Animation" id="Animation_yi41w"]
+resource_name = "swing"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.705113, 1.5516, -0.00174533]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -3.5), Vector2(10, -3), Vector2(17, 5.5), Vector2(1.5, -3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73op0"]
+_data = {
+"swing": SubResource("Animation_yi41w")
+}
 
 [node name="Player" type="Area2D"]
-position = Vector2(127, 116)
+position = Vector2(71, 76)
 script = ExtResource("1_i37cm")
-metadata/_edit_group_ = true
-
-[node name="Body" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_3deq0")
-animation = &"idle"
-frame = 2
-frame_progress = 0.154877
-
-[node name="Weapon" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_8wm5k")
-animation = &"Weapon Swing"
-offset = Vector2(13, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-221, 65)
 shape = SubResource("CapsuleShape2D_badm8")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(-221, 52)
+scale = Vector2(2, 2)
+texture = ExtResource("1_41d86")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(128, 96, 64, 32)
+
+[node name="Weapon" type="Sprite2D" parent="Body"]
+rotation = -0.00174533
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_41d86")
+centered = false
+region_enabled = true
+region_rect = Rect2(288, 128, 16, 32)
+
+[node name="WalkAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pcguc")
+}
+
+[node name="SwingAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_73op0")
+}

@@ -11,7 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector. defaul (0,0)
-	$Body.play()
+	$WalkAnimation.play("walk")
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -20,9 +20,12 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
-
+	if Input.is_action_pressed("swing"):
+		
+		$SwingAnimation.play("swing")
+		
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed # faster diagonal
 		
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	$Body.position += velocity * delta
+	$Body.position = $Body.position.clamp(Vector2.ZERO, screen_size)
