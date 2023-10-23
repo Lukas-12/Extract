@@ -7,63 +7,8 @@
 radius = 18.0
 height = 48.0
 
-[sub_resource type="Animation" id="Animation_4necf"]
-resource_name = "WeaponSwing"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Weapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.705113, 1.5516]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Weapon:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2, -3.5), Vector2(10, -3), Vector2(17, 5.5)]
-}
-
-[sub_resource type="Animation" id="Animation_qmi4p"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Weapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_xmvno"]
-resource_name = "walk"
+resource_name = "walkRight"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -91,27 +36,21 @@ tracks/1/keys = {
 "values": [Vector2(1.5, -3.5), Vector2(2, -3.5)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcguc"]
-_data = {
-"RESET": SubResource("Animation_qmi4p"),
-"WeaponSwing": SubResource("Animation_4necf"),
-"walk": SubResource("Animation_xmvno")
-}
-
-[sub_resource type="Animation" id="Animation_yi41w"]
-resource_name = "swing"
-length = 0.7
+[sub_resource type="Animation" id="Animation_oy68c"]
+resource_name = "walkLeft"
+length = 0.8
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Weapon:rotation")
+tracks/0/path = NodePath("Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.7),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.705113, 1.5516, -0.00174533]
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -120,40 +59,87 @@ tracks/1/path = NodePath("Body/Weapon:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2, -3.5), Vector2(10, -3), Vector2(17, 5.5), Vector2(1.5, -3.5)]
+"values": [Vector2(-9.5, -4), Vector2(-9.5, -2.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcguc"]
+_data = {
+"walkLeft": SubResource("Animation_oy68c"),
+"walkRight": SubResource("Animation_xmvno")
+}
+
+[sub_resource type="Animation" id="Animation_yi41w"]
+resource_name = "swingRight"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.705113, 1.5516]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -3.5), Vector2(10, -3), Vector2(17, 5.5)]
+}
+
+[sub_resource type="Animation" id="Animation_0pli4"]
+resource_name = "swingLeft"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5708, -0.724312, -0.0191986]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-19, 14.5), Vector2(-16.5, 3), Vector2(-9.5, -3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73op0"]
 _data = {
-"swing": SubResource("Animation_yi41w")
+"swingLeft": SubResource("Animation_0pli4"),
+"swingRight": SubResource("Animation_yi41w")
 }
 
 [node name="Player" type="Area2D"]
-position = Vector2(71, 76)
+position = Vector2(30, 79)
 script = ExtResource("1_i37cm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-221, 65)
+position = Vector2(1, 13)
 shape = SubResource("CapsuleShape2D_badm8")
-
-[node name="Body" type="Sprite2D" parent="."]
-position = Vector2(-221, 52)
-scale = Vector2(2, 2)
-texture = ExtResource("1_41d86")
-hframes = 4
-region_enabled = true
-region_rect = Rect2(128, 96, 64, 32)
-
-[node name="Weapon" type="Sprite2D" parent="Body"]
-rotation = -0.00174533
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_41d86")
-centered = false
-region_enabled = true
-region_rect = Rect2(288, 128, 16, 32)
 
 [node name="WalkAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -164,3 +150,19 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_73op0")
 }
+
+[node name="Body" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_41d86")
+flip_h = true
+hframes = 4
+region_enabled = true
+region_rect = Rect2(128, 96, 64, 32)
+
+[node name="Weapon" type="Sprite2D" parent="Body"]
+position = Vector2(2, -3.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_41d86")
+centered = false
+region_enabled = true
+region_rect = Rect2(288, 128, 16, 32)
